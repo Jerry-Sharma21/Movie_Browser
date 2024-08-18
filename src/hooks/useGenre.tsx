@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+
 import API from './config';
-import { Genre } from '../types/movies';
+import { Genre } from '@/types/movies';
 
 const useGenres = () => {
   const [genres, setGenres] = useState<Genre[]>([]);

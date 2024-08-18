@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import useMovies from '../hooks/useMovies';
-import useSearchMovies from '../hooks/useSearchMovies';
-import GenreList from './GenreList';
-import { useSearch } from '../context/SearchContext';
-import MovieCard from './MovieCard';
+
+import GenreList from '@/components/GenreList';
+import MovieCard from '@/components/MovieCard';
+import QueryStateWrapper from '@/components/QueryStateWrapper';
+import useSearchMovies from '@/hooks/useSearchMovies';
+import useMovies from '@/hooks/useMovies';
+import { useSearch } from '@/context/SearchContext';
 
 const MovieList: React.FC = () => {
   const { searchQuery } = useSearch();
@@ -15,17 +17,36 @@ const MovieList: React.FC = () => {
   const movies = searchQuery ? searchMovies : genreMovies;
   const loading = searchQuery ? searchLoading : genreLoading;
   const error = searchQuery ? searchError : genreError;
+  const isEmpty = movies.length === 0;
 
-  if (error) return <p className="text-red-500 text-center">Error: {error}</p>;
+  const LoadingState = <p className="text-center text-gray-500">Loading more movies...</p>;
+
+  const ErrorState = <p className="text-red-500 text-center">Error: {error}</p>;
+
+  const EmptyState = <p className="text-center text-gray-500">No movies found.</p>;
 
   return (
     <div className="flex flex-col h-full">
       <GenreList onGenreSelect={setGenreId} />
+
       <div className="flex-1 overflow-y-auto p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <MovieCard movies={movies} />
-        </div>
-        {loading && <p className="text-center text-gray-500">Loading more movies...</p>}
+        <QueryStateWrapper
+          isLoading={loading}
+          isError={!!error}
+          isEmpty={isEmpty}
+          loading={LoadingState}
+          error={ErrorState}
+          empty={EmptyState}
+        >
+          <section aria-labelledby="movie-list-title">
+            <h2 id="movie-list-title" className="sr-only">
+              Movie List
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <MovieCard movies={movies} />
+            </div>
+          </section>
+        </QueryStateWrapper>
       </div>
     </div>
   );

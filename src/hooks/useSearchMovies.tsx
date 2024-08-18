@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
+
 import API from './config';
-import { Movie } from '../types/movies';
-import { useSearch } from '../context/SearchContext';
+import { Movie } from '@/types/movies';
+import { useSearch } from '@/context/SearchContext';
 
 const useSearchMovies = () => {
   const { searchQuery } = useSearch();

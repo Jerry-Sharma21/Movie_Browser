@@ -1,6 +1,7 @@
 import React from 'react';
-import { NAV_ITEMS } from '../constants/constants';
 import { useNavigate } from 'react-router-dom';
+
+import { NAV_ITEMS } from '@/constants/constants';
 
 const NavigationItems: React.FC = () => {
   const navigate = useNavigate();
@@ -8,12 +9,18 @@ const NavigationItems: React.FC = () => {
   const handleNavigation = (path: string) => {
     navigate(path);
   };
+
   return (
-    <nav className="flex items-center space-x-4">
+    <nav className="flex items-center space-x-4" aria-label="Main Navigation">
       {NAV_ITEMS.map(item => (
-        <div key={item.key} className="text-black cursor-pointer" onClick={() => handleNavigation(item.path)}>
+        <button
+          key={item.key}
+          className="text-black cursor-pointer"
+          onClick={() => handleNavigation(item.path)}
+          aria-label={`Navigate to ${item.value}`}
+        >
           {item.value}
-        </div>
+        </button>
       ))}
     </nav>
   );

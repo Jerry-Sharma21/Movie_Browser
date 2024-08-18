@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
+
 import API from './config';
-import { Movie } from '../types/movies';
+import { Movie } from '@/types/movies';
 
 const useMovies = (genreId: number | null) => {
   const [movies, setMovies] = useState<Movie[]>([]);

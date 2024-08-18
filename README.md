@@ -89,6 +89,10 @@ Advanced filtering options were added to give users more control over the movie 
 
 The use of browser storage to save favorite movies allows users to retain their preferences even after refreshing or closing the browser.
 
+#### Alias Support for Development
+
+Alias support has been added to simplify import paths during development, improving code readability and maintainability. This allows for more manageable and cleaner import statements throughout the project. Sorted imports alphabetically, following best coding practices.
+
 ## Possible Improvements
 
 #### Enhanced Error Handling:

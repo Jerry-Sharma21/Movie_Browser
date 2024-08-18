@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
-import { useSearch } from '../context/SearchContext';
 
-const DEBOUNCE_DELAY = 300; // Adjust the delay as needed
+import { useSearch } from '@/context/SearchContext';
+
+const DEBOUNCE_DELAY = 300;
 
 const SearchBar: React.FC = () => {
   const [searchExpanded, setSearchExpanded] = useState(false);
@@ -40,9 +41,14 @@ const SearchBar: React.FC = () => {
           value={query}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
+          aria-label="Search Movies"
         />
       ) : (
-        <button className="text-gray-700 dark:text-gray-300 focus:outline-none" onClick={handleSearchClick}>
+        <button
+          className="text-gray-700 dark:text-gray-300 focus:outline-none"
+          onClick={handleSearchClick}
+          aria-label="Toggle Search"
+        >
           <Search size={24} />
         </button>
       )}

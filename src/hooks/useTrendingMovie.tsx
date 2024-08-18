@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+
 import API from './config';
-import { Movie } from '../types/movies';
+import { Movie } from '@/types/movies';
 
 const useTrendingMovie = () => {
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useState<Movie>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
