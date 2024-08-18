@@ -1,50 +1,118 @@
-# React + TypeScript + Vite
+# Movie Browse Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Overview
 
-Currently, two official plugins are available:
+This project is a responsive, mobile-first movie search application built using React, Tailwind CSS, and Lucide icons. It utilizes a public movie API i.e. TMDB API to fetch and display movie data on the homepage. The application includes features like search, infinite scrolling, advanced filtering, dark mode, a "My List" page, detailed view modals, and trending movies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### Installation
 
-## Expanding the ESLint configuration
+#### Clone the Repository
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`git clone https://github.com/Jerry-Sharma21/Movie_Browser.git`
 
-- Configure the top-level `parserOptions` property like this:
+#### Install Dependencies
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+`npm install`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### Run the Application
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+`npm run dev`
+The application will be accessible at http://localhost:5173
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### Note:
+
+### Features
+
+#### Responsive Design:
+
+The application is designed to be mobile-first and responsive, ensuring it works seamlessly across various screen sizes.
+
+#### Movie List Display:
+
+The homepage displays a list of movies, including their titles, poster images, and release years.
+
+#### Search Functionality:
+
+Users can search for movies by title. The movie list updates dynamically as the user types, fetching relevant results from the movie API.
+
+#### Infinite Scrolling:
+
+The application implements infinite scrolling to handle large numbers of search results, ensuring a smooth user experience.
+
+#### Advanced Filtering (Optional):
+
+Users can filter movies by genre, release year range, and rating range. Filters update the movie list dynamically.
+
+#### Favorite Movies:
+
+Users can save their favorite movies locally using browser storage. The "My List" page allows users to view and manage their favorite movies, including the ability to remove stored favorites.
+
+#### Dark Mode:
+
+The application supports dark mode, providing a comfortable viewing experience in low-light environments.
+
+#### Detailed View Modal:
+
+Each movie on the list can be clicked to view more detailed information in a modal window, enhancing the user's ability to explore movie details without leaving the homepage.
+
+#### Trending Movies:
+
+A section for trending movies is displayed at the top of the homepage, highlighting popular movies currently trending.
+
+### Design Decisions
+
+#### React & Tailwind CSS:
+
+React was chosen for its component-based architecture and ease of state management, while Tailwind CSS was used for styling due to its utility-first approach, allowing for rapid UI development.
+
+#### Lucide Icons:
+
+The Lucide icon library was integrated for clean, customizable icons throughout the application.
+
+#### Responsive Design:
+
+A mobile-first approach was adopted to ensure the application is usable on a wide range of devices, with breakpoints and flexible layouts implemented to enhance responsiveness.
+
+#### Search Feature:
+
+The search functionality is implemented with debouncing to optimize API calls and improve performance. The movie list updates in real-time as the user types, providing a smooth user experience.
+
+#### Infinite Scrolling:
+
+Infinite scrolling was implemented without relying on third-party libraries, providing better control over the implementation and performance optimization.
+
+#### Filtering Options:
+
+Advanced filtering options were added to give users more control over the movie list, enhancing the application's usability and customization.
+
+#### Local Storage for Favorites:
+
+The use of browser storage to save favorite movies allows users to retain their preferences even after refreshing or closing the browser.
+
+### Possible Improvements
+
+#### Enhanced Error Handling:
+
+Improve error handling for API requests and user interactions to provide more informative feedback and a better user experience.
+
+#### Unit Testing:
+
+Add unit tests for critical components and functionality to ensure the application remains robust and maintainable.
+
+#### Performance Optimization:
+
+Further optimize the application's performance by reducing API call frequency, lazy loading images, and implementing service workers for caching.
+
+#### PWA Support:
+
+Convert the application into a Progressive Web App (PWA) to enhance offline usability and provide a more native-like experience.
+
+#### Better Loading and Empty States:
+
+Improve the user experience by providing better loading indicators and empty states when there are no search results or when data is being fetched.
+
+### Accessibility and SEO
+
+Accessibility: The application follows accessibility best practices, including semantic HTML, ARIA roles, and keyboard navigation support.
+
+SEO: Meta tags, descriptive titles, and proper use of headings ensure the application is optimized for search engines.
