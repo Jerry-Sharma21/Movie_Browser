@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a responsive, mobile-first movie search application built using React, Tailwind CSS, and Lucide icons. It utilizes a public movie API i.e. TMDB API to fetch and display movie data on the homepage. The application includes features like search, infinite scrolling, advanced filtering, dark mode, a "My List" page, detailed view modals, and trending movies.
+This project is a responsive, mobile-first movie search application built using React, Typescript, Tailwind CSS, and Lucide icons. It utilizes a public movie API i.e. TMDB API to fetch and display movie data on the homepage. The application includes features like search, infinite scrolling, advanced filtering, dark mode, a "My List" page, detailed view modals, and trending movies.
 
 ## Installation
 
