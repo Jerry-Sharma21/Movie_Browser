@@ -111,6 +111,10 @@ Convert the application into a Progressive Web App (PWA) to enhance offline usab
 
 Improve the user experience by providing better loading indicators and empty states when there are no search results or when data is being fetched.
 
+#### External Libraries for Enhanced UI:
+
+Consider using external libraries like Material UI or Framer Motion to create a more interactive and visually appealing user interface. These libraries offer advanced components and animations that could further enhance the user experience, but they were not specified in the assignment.
+
 ## Accessibility and SEO
 
 Accessibility: The application follows accessibility best practices, including semantic HTML, ARIA roles, and keyboard navigation support.
