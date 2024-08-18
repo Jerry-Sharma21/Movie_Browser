@@ -1,10 +1,10 @@
 # Movie Browse Application
 
-### Overview
+## Overview
 
 This project is a responsive, mobile-first movie search application built using React, Tailwind CSS, and Lucide icons. It utilizes a public movie API i.e. TMDB API to fetch and display movie data on the homepage. The application includes features like search, infinite scrolling, advanced filtering, dark mode, a "My List" page, detailed view modals, and trending movies.
 
-#### Installation
+## Installation
 
 #### Clone the Repository
 
@@ -17,11 +17,11 @@ This project is a responsive, mobile-first movie search application built using 
 #### Run the Application
 
 `npm run dev`
-The application will be accessible at http://localhost:5173
+The application will be accessible at [http://localhost:5173](http://localhost:5173)
 
-#### Note:
+#### Note: Due to TMDB API restrictions in India, you may need to use a VPN to access the API and fetch movie data.
 
-### Features
+## Features
 
 #### Responsive Design:
 
@@ -59,7 +59,7 @@ Each movie on the list can be clicked to view more detailed information in a mod
 
 A section for trending movies is displayed at the top of the homepage, highlighting popular movies currently trending.
 
-### Design Decisions
+## Design Decisions
 
 #### React & Tailwind CSS:
 
@@ -89,7 +89,7 @@ Advanced filtering options were added to give users more control over the movie 
 
 The use of browser storage to save favorite movies allows users to retain their preferences even after refreshing or closing the browser.
 
-### Possible Improvements
+## Possible Improvements
 
 #### Enhanced Error Handling:
 
@@ -111,7 +111,7 @@ Convert the application into a Progressive Web App (PWA) to enhance offline usab
 
 Improve the user experience by providing better loading indicators and empty states when there are no search results or when data is being fetched.
 
-### Accessibility and SEO
+## Accessibility and SEO
 
 Accessibility: The application follows accessibility best practices, including semantic HTML, ARIA roles, and keyboard navigation support.
 
