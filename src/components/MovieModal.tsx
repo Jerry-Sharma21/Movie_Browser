@@ -8,7 +8,9 @@ interface MovieModalProps {
   onClose: () => void;
 }
 
-const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
+const MovieModal: React.FC<MovieModalProps> = props => {
+  const { movie, onClose } = props;
+
   const [isInMyList, setIsInMyList] = useState<boolean>(false);
 
   useEffect(() => {

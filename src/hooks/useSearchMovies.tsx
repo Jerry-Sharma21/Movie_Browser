@@ -6,17 +6,20 @@ import { useSearch } from '@/context/SearchContext';
 
 const useSearchMovies = () => {
   const { searchQuery } = useSearch();
+
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [isError, setIsError] = useState<string | null>(null);
 
   const fetchMovies = useCallback(async () => {
     if (!searchQuery) {
-      setMovies([]); // Clear movies if no search query
+      setMovies([]);
       return;
     }
 
-    setLoading(true);
+    setIsLoading(true);
     try {
       const response = await API.get('/search/movie', {
         params: {
@@ -25,9 +28,9 @@ const useSearchMovies = () => {
       });
       setMovies(response.data.results);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      setIsError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [searchQuery]);
 
@@ -35,7 +38,7 @@ const useSearchMovies = () => {
     fetchMovies();
   }, [fetchMovies]);
 
-  return { movies, loading, error };
+  return { movies, isLoading, isError };
 };
 
 export default useSearchMovies;

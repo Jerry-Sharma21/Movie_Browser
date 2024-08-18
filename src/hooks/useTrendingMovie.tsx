@@ -5,13 +5,15 @@ import { Movie } from '@/types/movies';
 
 const useTrendingMovie = () => {
   const [movie, setMovie] = useState<Movie>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [isError, setIsError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchRandomMovie = async () => {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const response = await API.get('/trending/movie/day');
         const movies = response.data.results;
 
@@ -19,23 +21,23 @@ const useTrendingMovie = () => {
           const randomIndex = Math.floor(Math.random() * movies.length);
           setMovie(movies[randomIndex]);
         } else {
-          setError('No trending movies available');
+          setIsError('No trending movies available');
         }
       } catch (err) {
         if (err instanceof Error) {
-          setError(err.message);
+          setIsError(err.message);
         } else {
-          setError('An unknown error occurred');
+          setIsError('An unknown error occurred');
         }
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchRandomMovie();
   }, []);
 
-  return { movie, loading, error };
+  return { movie, isLoading, isError };
 };
 
 export default useTrendingMovie;

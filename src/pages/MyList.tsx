@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Movie } from '../types/movies'; // Adjust the import path as needed
-import MovieCard from '../components/MovieCard'; // Adjust the import path as needed
+
+import MovieCard from '@/components/MovieCard';
+import { Movie } from '@/types/movies';
 
 const MyList: React.FC = () => {
   const [myList, setMyList] = useState<Movie[]>([]);
@@ -12,7 +13,7 @@ const MyList: React.FC = () => {
 
   return (
     <main className="p-4 mt-16" aria-labelledby="my-list-title">
-      <h1 id="my-list-title" className="text-2xl font-bold mb-4">
+      <h1 id="my-list-title" className="text-3xl text-gray-800 font-bold mb-4 dark:text-white">
         My List
       </h1>
       {myList.length === 0 ? (

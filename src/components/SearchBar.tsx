@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 
 import { useSearch } from '@/context/SearchContext';
 
 const DEBOUNCE_DELAY = 300;
 
 const SearchBar: React.FC = () => {
-  const [searchExpanded, setSearchExpanded] = useState(false);
   const [query, setQuery] = useState('');
+
   const { setSearchQuery } = useSearch();
 
   useEffect(() => {
@@ -18,40 +17,21 @@ const SearchBar: React.FC = () => {
     return () => clearTimeout(handler);
   }, [query, setSearchQuery]);
 
-  const handleSearchClick = () => {
-    setSearchExpanded(!searchExpanded);
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
 
-  const handleInputBlur = () => {
-    setSearchExpanded(false);
-  };
-
   return (
-    <div className="relative">
-      {searchExpanded ? (
-        <input
-          className="p-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md w-40"
-          type="text"
-          placeholder="Search..."
-          autoFocus
-          value={query}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-          aria-label="Search Movies"
-        />
-      ) : (
-        <button
-          className="text-gray-700 dark:text-gray-300 focus:outline-none"
-          onClick={handleSearchClick}
-          aria-label="Toggle Search"
-        >
-          <Search size={24} />
-        </button>
-      )}
+    <div className="px-4 mt-5 flex justify-end w-full max-w-md">
+      <input
+        className={`w-full p-2 border rounded-3xl focus:outline-gray-300 dark:bg-gray-600 text-black dark:text-white`}
+        type="text"
+        placeholder="Search..."
+        autoFocus
+        value={query}
+        onChange={handleInputChange}
+        aria-label="Search Movies"
+      />
     </div>
   );
 };

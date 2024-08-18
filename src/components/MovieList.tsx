@@ -8,11 +8,12 @@ import useMovies from '@/hooks/useMovies';
 import { useSearch } from '@/context/SearchContext';
 
 const MovieList: React.FC = () => {
-  const { searchQuery } = useSearch();
   const [genreId, setGenreId] = useState<number | null>(null);
 
-  const { movies: genreMovies, loading: genreLoading, error: genreError } = useMovies(genreId);
-  const { movies: searchMovies, loading: searchLoading, error: searchError } = useSearchMovies();
+  const { movies: genreMovies, isLoading: genreLoading, isError: genreError } = useMovies(genreId);
+  const { movies: searchMovies, isLoading: searchLoading, isError: searchError } = useSearchMovies();
+
+  const { searchQuery } = useSearch();
 
   const movies = searchQuery ? searchMovies : genreMovies;
   const loading = searchQuery ? searchLoading : genreLoading;
@@ -42,7 +43,7 @@ const MovieList: React.FC = () => {
             <h2 id="movie-list-title" className="sr-only">
               Movie List
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               <MovieCard movies={movies} />
             </div>
           </section>

@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 
-import useGenres from '@/hooks/useGenre';
 import QueryStateWrapper from '@/components/QueryStateWrapper';
+import useGenres from '@/hooks/useGenre';
 
-const GenreList: React.FC<{ onGenreSelect: (genreId: number) => void }> = ({ onGenreSelect }) => {
-  const { genres, loading, error } = useGenres();
+interface GenreListProps {
+  onGenreSelect: (genreId: number) => void;
+}
+
+const GenreList: React.FC<GenreListProps> = props => {
+  const { onGenreSelect } = props;
+
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
+
+  const { genres, isLoading, isError } = useGenres();
 
   const handleGenreClick = (genreId: number) => {
     setSelectedGenre(genreId);
@@ -19,7 +26,7 @@ const GenreList: React.FC<{ onGenreSelect: (genreId: number) => void }> = ({ onG
   );
   const ErrorState = (
     <p role="alert" className="text-red-500 text-center">
-      Error: {error}
+      Error: {isError}
     </p>
   );
   const EmptyState = (
@@ -30,8 +37,8 @@ const GenreList: React.FC<{ onGenreSelect: (genreId: number) => void }> = ({ onG
 
   return (
     <QueryStateWrapper
-      isLoading={loading}
-      isError={!!error}
+      isLoading={isLoading}
+      isError={!!isError}
       isEmpty={genres.length === 0}
       loading={LoadingState}
       error={ErrorState}
@@ -42,8 +49,8 @@ const GenreList: React.FC<{ onGenreSelect: (genreId: number) => void }> = ({ onG
           <button
             key={genre.id}
             onClick={() => handleGenreClick(genre.id)}
-            className={`px-4 h-9 min-w-[120px] border border-gray-400 rounded-full text-gray-700 hover:bg-gray-200 transition-colors duration-200 ease-in-out flex items-center justify-center overflow-hidden whitespace-nowrap ${
-              selectedGenre === genre.id ? 'bg-gray-300' : ''
+            className={`px-4 h-9 min-w-[120px] border border-gray-400 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 ease-in-out flex items-center justify-center overflow-hidden whitespace-nowrap ${
+              selectedGenre === genre.id ? 'bg-gray-300 dark:bg-gray-700' : ''
             }`}
             aria-pressed={selectedGenre === genre.id}
             aria-label={`Select ${genre.name} genre`}

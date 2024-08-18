@@ -4,16 +4,16 @@ import QueryStateWrapper from '@/components/QueryStateWrapper';
 import useTrendingMovie from '@/hooks/useTrendingMovie';
 
 const TrendingMovie: React.FC = () => {
-  const { movie, loading, error } = useTrendingMovie();
+  const { movie, isLoading, isError } = useTrendingMovie();
 
   const LoadingState = (
-    <p className="text-center text-gray-500" role="status">
+    <p className="text-center text-gray-500 h-[calc(90vh-70px)" role="status">
       Loading...
     </p>
   );
   const ErrorState = (
     <p className="text-center text-red-500" role="alert">
-      Error: {error}
+      Error: {isError}
     </p>
   );
   const EmptyState = (
@@ -24,22 +24,19 @@ const TrendingMovie: React.FC = () => {
 
   return (
     <QueryStateWrapper
-      isLoading={loading}
-      isError={!!error}
+      isLoading={isLoading}
+      isError={!!isError}
       isEmpty={!movie}
       loading={LoadingState}
       error={ErrorState}
       empty={EmptyState}
     >
       <section className="relative w-full h-[calc(90vh-70px)]" aria-labelledby="trending-movie-title" aria-live="polite">
-        <h2 id="trending-movie-title" className="sr-only">
-          Trending Movie
-        </h2>
         <div className="relative w-full h-full overflow-hidden">
           <img
             src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
             alt={`Poster for ${movie?.title}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fill"
             role="img"
           />
           <div className="absolute inset-0 flex items-center p-6 text-white bg-gradient-to-r from-black/80 via-transparent to-transparent">

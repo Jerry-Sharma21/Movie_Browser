@@ -5,12 +5,15 @@ import { Movie } from '@/types/movies';
 
 const useMovies = (genreId: number | null) => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [isError, setIsError] = useState<string | null>(null);
+
   const [page, setPage] = useState(1);
 
   const fetchMovies = useCallback(async () => {
-    setLoading(true);
+    setIsLoading(true);
     try {
       const response = await API.get('/discover/movie', {
         params: {
@@ -20,9 +23,9 @@ const useMovies = (genreId: number | null) => {
       });
       setMovies(prevMovies => [...prevMovies, ...response.data.results]);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      setIsError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [page, genreId]);
 
@@ -46,7 +49,7 @@ const useMovies = (genreId: number | null) => {
     return () => window.removeEventListener('scroll', loadMoreMovies);
   }, [loadMoreMovies]);
 
-  return { movies, loading, error };
+  return { movies, isLoading, isError };
 };
 
 export default useMovies;
