@@ -35,7 +35,7 @@ const NavigationBar: React.FC = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-10 transition-colors duration-300 ${
-        isHomePage && !isScrolled ? 'bg-transparent' : 'bg-black'
+        isHomePage && !isScrolled ? 'transparent' : 'bg-gradient-to-b from-gray-800 to-black'
       }`}
       role="banner"
     >
